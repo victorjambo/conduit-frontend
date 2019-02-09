@@ -13,11 +13,12 @@ class Ted extends Component {
     this.props.tedAction("hello");
   }
   render() {
+    const { message } = this.props;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.props.message}</p>
+          <p>{message}</p>
           <a href="#section" onClick={this.onClick}>Learn React</a>
           <Time />
         </header>

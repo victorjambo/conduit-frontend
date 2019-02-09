@@ -14,10 +14,11 @@ const user = {
 
 export function tedAction() {
   return function(dispatch) {
-    return axiosWithHeader.poast("/api/v1/users/", user)
+    return axiosWithHeader.post("/api/v1/users/login/", user)
       .then(({ data }) => {
-      dispatch(fetchArticleDetails(data));
-    });
+        dispatch(fetchArticleDetails(data));
+      })
+      .catch((error) => {console.log(error.response)});
   };
 }
 
