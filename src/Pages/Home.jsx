@@ -1,91 +1,83 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SingleArticle from '../Components/Article/SingleArticle';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getArticles } from '../redux/actions/articlesAction';
 
 
-const Home = () => (
-  <div className="home-page">
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
 
-    <div className="banner">
-      <div className="container">
-        <h1 className="logo-font">Authors Haven</h1>
-        <p>A place to share your knowledge.</p>
-      </div>
-    </div>
+  componentWillMount() {
+    this.props.getArticles()
+  }
+  render() {
+    const { notFetching, articles } = this.props;
+    return (
+      <div className="home-page">
 
-    <div className="container page">
-      <div className="row">
-
-        <div className="col-md-9">
-          <div className="feed-toggle">
-            <ul className="nav nav-pills outline-active">
-              <li className="nav-item">
-                <Link className="nav-link disabled" to="/">Your Feed</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/">Global Feed</Link>
-              </li>
-            </ul>
+        <div className="banner">
+          <div className="container">
+            <h1 className="logo-font">Authors Haven</h1>
+            <p>A place to share your knowledge.</p>
           </div>
-
-          <div className="article-preview">
-            <div className="article-meta">
-              <Link to="/profile"><img src="http://i.imgur.com/Qr71crq.jpg" alt="" /></Link>
-              <div className="info">
-                <Link to="/profile" className="author">Eric Simons</Link>
-                <span className="date">January 20th</span>
-              </div>
-              <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                <i className="ion-heart"></i> 29
-            </button>
-            </div>
-            <Link to="/article" className="preview-link">
-              <h1>How to build webapps that scale</h1>
-              <p>This is the description for the post.</p>
-              <span>Read more...</span>
-            </Link>
-          </div>
-
-          <div className="article-preview">
-            <div className="article-meta">
-              <Link to="/profile"><img src="http://i.imgur.com/N4VcUeJ.jpg" alt="" /></Link>
-              <div className="info">
-                <Link to="/profile" className="author">Albert Pai</Link>
-                <span className="date">January 20th</span>
-              </div>
-              <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                <i className="ion-heart"></i> 32
-            </button>
-            </div>
-            <Link to="/article" className="preview-link">
-              <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-              <p>This is the description for the post.</p>
-              <span>Read more...</span>
-            </Link>
-          </div>
-
         </div>
 
-        <div className="col-md-3">
-          <div className="sidebar">
-            <p>Popular Tags</p>
+        <div className="container page">
+          <div className="row">
 
-            <div className="tag-list">
-              <Link to="/" className="tag-pill tag-default">programming</Link>
-              <Link to="/" className="tag-pill tag-default">javascript</Link>
-              <Link to="/" className="tag-pill tag-default">emberjs</Link>
-              <Link to="/" className="tag-pill tag-default">angularjs</Link>
-              <Link to="/" className="tag-pill tag-default">react</Link>
-              <Link to="/" className="tag-pill tag-default">mean</Link>
-              <Link to="/" className="tag-pill tag-default">node</Link>
-              <Link to="/" className="tag-pill tag-default">rails</Link>
+            <div className="col-md-9">
+              <div className="feed-toggle">
+                <ul className="nav nav-pills outline-active">
+                  <li className="nav-item">
+                    <Link className="nav-link disabled" to="/">Your Feed</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/">Global Feed</Link>
+                  </li>
+                </ul>
+              </div>
+
+              { notFetching && articles.results.map((article) => <SingleArticle article={article} key={article.slug} />) }
+
             </div>
+
+            <div className="col-md-3">
+              <div className="sidebar">
+                <p>Popular Tags</p>
+
+                <div className="tag-list">
+                  <Link to="/" className="tag-pill tag-default">programming</Link>
+                  <Link to="/" className="tag-pill tag-default">javascript</Link>
+                  <Link to="/" className="tag-pill tag-default">emberjs</Link>
+                  <Link to="/" className="tag-pill tag-default">angularjs</Link>
+                  <Link to="/" className="tag-pill tag-default">react</Link>
+                  <Link to="/" className="tag-pill tag-default">mean</Link>
+                  <Link to="/" className="tag-pill tag-default">node</Link>
+                  <Link to="/" className="tag-pill tag-default">rails</Link>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
       </div>
-    </div>
+    )
+  }
+}
 
-  </div>
-);
+const mapStateToProps = state => ({
+  articles: state.articlesReducer.response,
+  notFetching: state.articlesReducer.notFetching
+});
 
-export default Home;
+const mapDispatchToProps = dispatch => ({
+  getArticles: bindActionCreators(getArticles, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
