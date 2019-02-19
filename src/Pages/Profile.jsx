@@ -12,13 +12,14 @@ const Profile = () => (
             <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" alt="" />
             <h4>Victor Mutai</h4>
             <p>
-              Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games
-          </p>
-            <button className="btn btn-sm btn-outline-secondary action-btn">
-              <i className="ion-plus-round"></i>
+              Cofounder @GoThinkster,
+              lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games
+            </p>
+            <button type="button" className="btn btn-sm btn-outline-secondary action-btn">
+              <i className="ion-plus-round" />
               &nbsp;
               Follow Victor Mutai
-          </button>
+            </button>
           </div>
 
         </div>
@@ -47,9 +48,11 @@ const Profile = () => (
                 <Link to="/profile" className="author">Eric Simons</Link>
                 <span className="date">January 20th</span>
               </div>
-              <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                <i className="ion-heart"></i> 29
-            </button>
+              <button type="button" className="btn btn-outline-primary btn-sm pull-xs-right">
+                <i className="ion-heart" />
+                {' '}
+                29
+              </button>
             </div>
             <Link to="/article" className="preview-link">
               <h1>How to build webapps that scale</h1>
@@ -65,9 +68,11 @@ const Profile = () => (
                 <Link to="/profile" className="author">Albert Pai</Link>
                 <span className="date">January 20th</span>
               </div>
-              <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                <i className="ion-heart"></i> 32
-            </button>
+              <button type="button" className="btn btn-outline-primary btn-sm pull-xs-right">
+                <i className="ion-heart" />
+                {' '}
+                32
+              </button>
             </div>
             <Link to="/article" className="preview-link">
               <h1>The song you won't ever stop singing. No matter how hard you try.</h1>

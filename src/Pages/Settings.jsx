@@ -17,7 +17,7 @@ const Settings = () => (
                 <input className="form-control form-control-lg" type="text" placeholder="Your Name" />
               </fieldset>
               <fieldset className="form-group">
-                <textarea className="form-control form-control-lg" rows="8" placeholder="Short bio about you"></textarea>
+                <textarea className="form-control form-control-lg" rows="8" placeholder="Short bio about you" />
               </fieldset>
               <fieldset className="form-group">
                 <input className="form-control form-control-lg" type="text" placeholder="Email" />
@@ -25,7 +25,7 @@ const Settings = () => (
               <fieldset className="form-group">
                 <input className="form-control form-control-lg" type="password" placeholder="Password" />
               </fieldset>
-              <button className="btn btn-lg btn-primary pull-xs-right">
+              <button type="button" className="btn btn-lg btn-primary pull-xs-right">
                 Update Settings
               </button>
             </fieldset>

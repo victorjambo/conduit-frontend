@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 import { loginActionRequest } from '../redux/actions/authAction';
 import Form from '../Components/Form';
 
 
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       email: '',
       password: ''
-    }
+    };
     this.logChange = this.logChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,7 +24,7 @@ class Login extends Component {
     const { email, password } = this.state;
     const user = {
       user: { email, password }
-    }
+    };
     this.props.loginActionRequest(user);
   }
 
@@ -49,15 +51,20 @@ class Login extends Component {
                 <li>Email and Password don't match</li>
               </ul>
 
-              <Form email={email} password={password} handleSubmit={this.handleSubmit} logChange={this.logChange} />
+              <Form
+                email={email}
+                password={password}
+                handleSubmit={this.handleSubmit}
+                logChange={this.logChange}
+              />
             </div>
 
           </div>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 
 const mapStateToProps = state => ({
@@ -67,5 +74,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loginActionRequest: bindActionCreators(loginActionRequest, dispatch),
 });
+
+Login.propTypes = {
+  loginActionRequest: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

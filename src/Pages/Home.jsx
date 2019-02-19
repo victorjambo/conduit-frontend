@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SingleArticle from '../Components/Article/SingleArticle';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
+import SingleArticle from '../Components/Article/SingleArticle';
 import { getArticles } from '../redux/actions/articlesAction';
 
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   componentWillMount() {
-    this.props.getArticles()
+    const { getArticlesProp } = this.props;
+    getArticlesProp();
   }
+
   render() {
     const { notFetching, articles } = this.props;
     return (
@@ -42,7 +46,9 @@ class Home extends Component {
                 </ul>
               </div>
 
-              { notFetching && articles.results.map((article) => <SingleArticle article={article} key={article.slug} />) }
+              {notFetching && articles.results.map(
+                article => <SingleArticle article={article} key={article.slug} />
+              )}
 
             </div>
 
@@ -67,7 +73,7 @@ class Home extends Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 
@@ -77,7 +83,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: bindActionCreators(getArticles, dispatch)
+  getArticlesProp: bindActionCreators(getArticles, dispatch)
 });
+
+Home.propTypes = {
+  getArticlesProp: PropTypes.func,
+  articles: PropTypes.arrayOf,
+  notFetching: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

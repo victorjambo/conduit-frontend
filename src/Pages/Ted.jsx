@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg';
-import '../assets/Ted.scss';
 import { connect } from 'react-redux';
-import { tedAction } from '../redux/actions/TedAction';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
+import { tedAction } from '../redux/actions/TedAction';
 import Time from './Time';
 import { fetchTime } from '../redux/actions/TimeAction';
+import '../assets/Ted.scss';
+import logo from '../assets/logo.svg';
 
 class Ted extends Component {
   onClick = (e) => {
     e.preventDefault();
-    this.props.tedAction("hello");
+    this.props.tedAction('hello');
   }
+
   render() {
     const { message } = this.props;
     return (
@@ -35,5 +38,10 @@ const mapDispatchToProps = dispatch => ({
   tedAction: bindActionCreators(tedAction, dispatch),
   fetchTime: bindActionCreators(fetchTime, dispatch),
 });
+
+Ted.propTypes = {
+  tedAction: PropTypes.func,
+  message: PropTypes.string
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ted);

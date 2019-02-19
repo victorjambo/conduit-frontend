@@ -11,12 +11,14 @@ const Navbar = () => (
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/create-article">
-            <i className="ion-compose"></i>&nbsp;New Article
+            <i className="ion-compose" />
+            &nbsp;New Article
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/settings">
-            <i className="ion-gear-a"></i>&nbsp;Settings
+            <i className="ion-gear-a" />
+            &nbsp;Settings
           </Link>
         </li>
         <li className="nav-item">
