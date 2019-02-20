@@ -3,25 +3,14 @@ import axiosWithHeader from '../../helpers/http';
 
 const user = {
   user: {
-    email: "jake@jake.jake",
-    token: "jwt.token.here",
-    username: "jake",
-    bio: "I work at statefarm",
+    email: 'jake@jake.jake',
+    token: 'jwt.token.here',
+    username: 'jake',
+    bio: 'I work at statefarm',
     image: null,
-    password: "Password1234,,"
+    password: 'Password1234,,'
   }
-}
-
-export function tedAction() {
-  return function(dispatch) {
-    return axiosWithHeader.post("/api/v1/users/login/", user)
-      .then(({ data }) => {
-        dispatch(fetchArticleDetails(data));
-      })
-      .catch((error) => {console.log(error.response)});
-  };
-}
-
+};
 
 export const fetchArticleDetails = message => (
   {
@@ -29,3 +18,12 @@ export const fetchArticleDetails = message => (
     message,
   }
 );
+
+export function tedAction() {
+  return dispatch => axiosWithHeader.post('/api/v1/users/login/', user)
+    .then(({ data }) => {
+      dispatch(fetchArticleDetails(data));
+    })
+    // eslint-disable-next-line no-console
+    .catch((error) => { console.log(error.response); });
+}

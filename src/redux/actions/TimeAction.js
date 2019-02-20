@@ -1,19 +1,18 @@
-import { GET_TIME } from '../constants';
 import axios from 'axios';
+import { GET_TIME } from '../constants';
 
-export const fetchTime = (dispatch) => {
-  return axios.get('/user?ID=12345')
-  .then(function (response) {
-    dispatch(timeAction(response.data))
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-export const timeAction = (data) => (
+export const timeAction = data => (
   {
     type: GET_TIME,
     data,
   }
 );
+
+export const fetchTime = dispatch => axios.get('/user?ID=12345')
+  .then((response) => {
+    dispatch(timeAction(response.data));
+  })
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  });

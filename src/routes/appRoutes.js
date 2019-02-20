@@ -6,7 +6,8 @@ const ROUTES = {
   SETTINGS: '/settings',
   ARTICLE: '/article',
   CREATE_ARTICLE: '/create-article',
-  TED: '/ted'
-}
+  TED: '/ted',
+  ARTICLE_SLUG: '/article/:slug'
+};
 
 export default ROUTES;

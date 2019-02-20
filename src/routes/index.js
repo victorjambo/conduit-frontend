@@ -20,6 +20,7 @@ export default () => (
     <Route path={ROUTES.PROFILE} exact component={Profile} />
     <Route path={ROUTES.SETTINGS} exact component={Settings} />
     <Route path={ROUTES.ARTICLE} exact component={Article} />
+    <Route path={ROUTES.ARTICLE_SLUG} component={Article} />
     <Route path={ROUTES.CREATE_ARTICLE} exact component={CreateArticle} />
     <Route path={ROUTES.TED} exact component={Ted} />
   </Switch>
